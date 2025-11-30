@@ -8,6 +8,8 @@ To run, clone this repo, install Rust, and run: `make 4`. It should generate a b
 
 ## Keen 5 and 6
 
+![Robo Red](https://github.com/chrishulbert/dopefish-decoder/blob/main/RoboRed.png?raw=true)
+
 * Shareware Keen 4 is included, but Keen 5 and 6 are BYO.
 * Keen 5-6 files should be placed in data/keen5 and data/keen6.
 * Note you must decompress the EXEs first, as described below.
