@@ -17,6 +17,8 @@ To run, clone this repo, install Rust, and run: `make 4`. It should generate a b
 
 ## Decompressing EXE files
 
+![Blooguard](https://github.com/chrishulbert/dopefish-decoder/blob/main/Blooguard.png?raw=true)
+
 * Keen 5 and 6 EXE files must be decompressed.
 * Download UNLZEXE (16 bit version) from here: https://keenwiki.shikadi.net/wiki/UNLZEXE
 * UNLZEXE is also in this repo.
