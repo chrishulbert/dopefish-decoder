@@ -45,6 +45,31 @@ pub fn parse(exe: &[u8], graph_data: &[u8], maps: &[u8]) -> Result<()> {
         let path = format!("OutputSprite{}.png", i);
         std::fs::write(path, &png)?;
     }
+    // Unmasked 8x8 tiles are all stored in one chunk that has no length header.
+    // These are not used in-game, should we bother?
+    let unmasked_tiles_8 = chunks.next_with_auto_length();
+    let unmasked_tiles_8_count = unmasked_tiles_8.len() / 32; // Round down because auto length chunk may have extra byte(s).
+    for i in 0..unmasked_tiles_8_count {
+        let offset = i * 32;
+        let image = images::parse_ega_rgbi(&unmasked_tiles_8[offset..], 1, 8);
+        let png = image.png();
+        let path = format!("OutputTiles8Unmasked{}.png", i);
+        std::fs::write(path, &png)?;
+    }
+    // Masked tiles are stored as above, no length header.
+    let masked_tiles_8 = chunks.next_with_auto_length();
+    let masked_tiles_8_count = masked_tiles_8.len() / 40;
+    for i in 0..masked_tiles_8_count {
+        let offset = i * 40;
+        let image = images::parse_ega_rgbim(&masked_tiles_8[offset..], 1, 8);
+        let png = image.png();
+        let path = format!("OutputTiles8Masked{}.png", i);
+        std::fs::write(path, &png)?;
+    }
+    // Now get the 16x16 tiles. These get a chunk each but it has no header.
+    // let masked_tiles_16 = chunks.next();
+    // let unmasked_tiles_32 = chunks.next();
+    // let masked_tiles_32 = chunks.next();
     Ok(())
 }
 

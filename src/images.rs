@@ -11,7 +11,7 @@ pub struct Image {
 
 // Convert 4-planes ega data.
 pub fn parse_ega_rgbi(data: &[u8], width_div_8: usize, height: usize) -> Image {
-    let indexed_pixels = combine_planes(&data, width_div_8, height);
+    let indexed_pixels = combine_planes(&data, width_div_8, height, 4);
     let rgba: Vec<u32> = indexed_pixels.iter().map(|ix| palette::PALETTE[*ix as usize]).collect();
     let width = width_div_8 * 8;
     Image { data: rgba, width, height }
@@ -19,7 +19,7 @@ pub fn parse_ega_rgbi(data: &[u8], width_div_8: usize, height: usize) -> Image {
 
 // Convert 5-planes masked ega data.
 pub fn parse_ega_rgbim(data: &[u8], width_div_8: usize, height: usize) -> Image {
-    let indexed_pixels = combine_planes(&data, width_div_8, height);
+    let indexed_pixels = combine_planes(&data, width_div_8, height, 5);
     fn rgba_from_masked_index(ix: &u8) -> u32 {
         if ix & 1 == 0 { // Is the mask bit on?
             return palette::PALETTE[(ix >> 1) as usize]; // Remove the mask bit for the palette lookup.
@@ -32,11 +32,11 @@ pub fn parse_ega_rgbim(data: &[u8], width_div_8: usize, height: usize) -> Image 
     Image { data: rgba, width, height }
 }
 
-fn combine_planes(data: &[u8], width_div_8: usize, height: usize) -> Vec<u8> {
+fn combine_planes(data: &[u8], width_div_8: usize, height: usize, planes: usize) -> Vec<u8> {
     let width = width_div_8 * 8;
     let mut indexed_pixels: Vec<u8> = vec![0; width * height];
     let bytes_per_plane = width_div_8 * height;
-    for (plane_index, plane) in data.chunks_exact(bytes_per_plane).take(5).enumerate() {
+    for (plane_index, plane) in data.chunks_exact(bytes_per_plane).take(planes).enumerate() {
         let plane_mask = 1 << plane_index;
         let mut out_index = 0;
         for eight_pixels in plane {
