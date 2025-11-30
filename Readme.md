@@ -27,5 +27,7 @@ To run, clone this repo, install Rust, and run: `make 4`. It should generate a b
 
 ## References
 
+![Council Member](https://github.com/chrishulbert/dopefish-decoder/blob/main/Council.png?raw=true)
+
 https://moddingwiki.shikadi.net/wiki/Commander_Keen_4-6
 https://moddingwiki.shikadi.net/wiki/EGAGraph_Format
