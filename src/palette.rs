@@ -1,0 +1,20 @@
+pub const PALETTE: [u32; 16] = [
+    0x000000FF, // #000000
+    0x0000AAFF, // #0000AA
+    0x00AA00FF, // #00AA00
+    0x00AAAAFF, // #00AAAA
+    0xAA0000FF, // #AA0000
+    0xAA00AAFF, // #AA00AA
+    0xAA5500FF, // #AA5500
+    0xAAAAAAFF, // #AAAAAA
+    0x555555FF, // #555555
+    0x5555FFFF, // #5555FF
+    0x55FF55FF, // #55FF55
+    0x55FFFFFF, // #55FFFF
+    0xFF5555FF, // #FF5555
+    0xFF55FFFF, // #FF55FF
+    0xFFFF55FF, // #FFFF55
+    0xFFFFFFFF, // #FFFFFF
+];
+
+pub const CLEAR: u32 = 0;
