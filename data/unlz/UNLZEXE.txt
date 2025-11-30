@@ -1,0 +1,105 @@
+
+FREEWARE:
+
+    This software may NOT be distributed or bundled with any product
+    that is sold for commercial profit without the explicit permission
+    of the author. In cases where the author has consented, the PKUNZIP(tm)
+    authentication message which normally reads :
+
+        Authentic files Verified!   # EYC098
+        Tenth Planet Software International
+
+    will additionally indicate the commercial entity to which permission
+    has been granted. If authentication is not present, please contact
+    the author to obtain a bona fide copy.
+
+Disclaimer:
+
+    The author hereby disclaims all warranties relating to this software,
+    whether express or implied, including without limitation any implied
+    warranties of merchantability or fitness for a particular purpose.
+    The author will not be liable for any special, incidental,
+    consequential, indirect or similar damages due to loss of data or any
+    other reason, even if the author or an agent of the author has been
+    advised of the possibility of such damages.  In no event shall the
+    author's liability for any damages ever exceed the price paid for
+    the software, regardless of the form of the claim.  The person
+    using the software bears all risk as to the quality and performance
+    of the software.
+
+UnLZEXE:
+
+    This tool was designed to decompress all .EXE files created by
+    Fabrice Bellard's popular LZEXE v0.90 & v0.91.
+
+    The key reason to decompress files is so they can be run and examined
+    by debuggers like DEBUG, CodeView or Periscope. If the file is not
+    decompressed the user must step through the decompression and relocation
+    code every time the file is loaded before breakpoints can be set.
+
+    Disassemblers like the very powerful V Communications' "Sourcer! The
+    Commenting Disassembler!" need the file to be decompressed so that it
+    can make sense of the code and provide labeling of jumps and calls.
+
+    The usage of UnLZEXE is very simple, the program is run with the name
+    of the file to be decompressed and a name of the file to place the
+    decompressed image in. The decompression process will be aborted if
+    the source file is not compressed with LZEXE, or a supported version
+    thereof. The process will also be aborted if there is insufficient
+    memory for UnLZEXE to allocated its buffers, this is a programming
+    issue and frankly I'm too lazy to expend the effort to rewrite the
+    code to overcome this. If this is really an issue for you I can
+    supply a DOS Extender or Win32 version.
+
+    If you found this tool to be mildly useful or entertaining please send
+    me some Email, positive feedback is always good to get and makes writing
+    FREEWARE worth while. If you didn't like this tool, discard it, and keep
+    your sentiments to yourself.
+
+
+Clive Turvey, October 2, 1996.
+DeKalb, IL., USA & Southampton, ENGLAND.
+
+Email : 74011.1732@compuserve.com
+      : clive@tbcnet.com
+
+URL   : http://www.tbcnet.com/~clive
+
+------------------------------------------------------------------------------
+
+I have finished writing Windows Source Version 3, which is now available
+from V Communications Inc. Versions one & two of Windows Source were
+written by Andrew Schulman.
+
+What is Windows Source?
+
+Windows Source is an add-on to V Communications' Sourcer disassembler
+which preprocesses executable, dynamic link library, device drivers and
+VxD files for Windows 3.x, Windows '95 & Windows NT. It also provides
+support for OS/2 1.x, 2.x & Warp.
+
+Where possible symbolic debug information included in separate .SYM,
+.DBG files, or included in Codeview or COFF debugging sections.
+
+Windows Source Web Page : http://www.tbcnet.com/~clive/vcomwinp.html
+
+------------------------------------------------------------------------------
+
+For information about V Communications software :
+
+Sourcer, Bios Preprocessor, Windows Source, System Commander,
+
+V Communications, Inc., 4320 Stevens Creek Blvd.,
+Suite 120, San Jose, CA 95129-9944.
+
+Orders: 800-648-8266 (USA & Canada)
+Phone : 408-296-4224
+Fax   : 408-296-4441
+BBS   : 408-296-5334
+Email : 75031.3042@compuserve.com
+      : sales@v-com.com
+URL   : http://www.v-com.com (for System Commander Only)
+
+These tools are highly recommended, be sure to let them know Clive Turvey
+sent you.
+
