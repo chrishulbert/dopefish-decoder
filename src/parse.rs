@@ -67,9 +67,32 @@ pub fn parse(exe: &[u8], graph_data: &[u8], maps: &[u8]) -> Result<()> {
         std::fs::write(path, &png)?;
     }
     // Now get the 16x16 tiles. These get a chunk each but it has no header.
-    // let masked_tiles_16 = chunks.next();
-    // let unmasked_tiles_32 = chunks.next();
-    // let masked_tiles_32 = chunks.next();
+    // Unmasked first, then masked.
+    let mut tile_16_masked_number = 0;
+    let mut tile_16_unmasked_number = 0;
+    loop {
+        if chunks.is_at_end() { break }
+        let chunk = chunks.next_with_auto_length();
+        let len = chunk.len();
+        println!("16 len: {}", len);
+        if 128 <= len && len <= 159 { // 16 unmasked. Tests a range in case the auto length decoded some extra.
+            let image = images::parse_ega_rgbi(&chunk, 2, 16);
+            let png = image.png();
+            let path = format!("OutputTiles16Unmasked{}.png", tile_16_unmasked_number);
+            std::fs::write(path, &png)?;
+            tile_16_unmasked_number += 1;
+        } else if 160 <= len && len <= 160 + 16 { // 16 masked.
+            let image = images::parse_ega_rgbim(&chunk, 2, 16);
+            let png = image.png();
+            let path = format!("OutputTiles16Masked{}.png", tile_16_masked_number);
+            std::fs::write(path, &png)?;
+            tile_16_masked_number += 1;
+        } else if len == 0 {
+            // Ignore but increment the count?
+        } else {
+            break // Finished reading tiles, hit the uninteresting chunks at the end now.
+        }
+    }
     Ok(())
 }
 

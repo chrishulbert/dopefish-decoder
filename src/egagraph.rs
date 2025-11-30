@@ -32,6 +32,10 @@ impl<'a> ChunkIterator<'a> {
         huffman::decompress(compressed, &self.dict, len)
     }
 
+    pub fn is_at_end(&self) -> bool {
+        self.index >= self.chunk_offsets.len()
+    }
+
     // This decompresses chunks that have no length header, using all data up until the next chunk.
     // Since this doesn't know when to stop decoding, it'll maybe have extra byte(s) at the end from huffman decoding excess bits.
     pub fn next_with_auto_length(&mut self) -> Vec<u8> {
