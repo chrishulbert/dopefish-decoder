@@ -5,7 +5,7 @@
 
 use anyhow::{Result, bail};
 
-pub fn expand(compressed: &[u8], flag: u16) -> Result<Vec<u8>> {
+pub fn expand(compressed: &[u8], key: u16) -> Result<Vec<u8>> {
     let mut out: Vec<u8> = Vec::new();
     let mut bytes = compressed.iter();
     loop {
@@ -19,11 +19,11 @@ pub fn expand(compressed: &[u8], flag: u16) -> Result<Vec<u8>> {
         };
         let word = (*le as u16) + ((*be as u16) << 8);
 
-        if word == flag { // Repeater.
-            let Some(count_le) = bytes.next() else { bail!("Count le byte missing after RLEW flag!") };
-            let Some(count_be) = bytes.next() else { bail!("Count be byte missing after RLEW flag!") };
-            let Some(value_le) = bytes.next() else { bail!("Value le byte missing after RLEW flag!") };
-            let Some(value_be) = bytes.next() else { bail!("Value be byte missing after RLEW flag!") };
+        if word == key { // Repeater.
+            let Some(count_le) = bytes.next() else { bail!("Count le byte missing after RLEW key!") };
+            let Some(count_be) = bytes.next() else { bail!("Count be byte missing after RLEW key!") };
+            let Some(value_le) = bytes.next() else { bail!("Value le byte missing after RLEW key!") };
+            let Some(value_be) = bytes.next() else { bail!("Value be byte missing after RLEW key!") };
             let count = (*count_le as u16) + ((*count_be as u16) << 8);
             for _ in 0..count {
                 out.push(*value_le);
