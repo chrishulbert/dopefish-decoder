@@ -2,6 +2,7 @@ use anyhow::Result;
 
 mod read;
 mod parse;
+mod parse_graphics;
 mod versions;
 mod palette;
 mod huffman;
@@ -9,6 +10,9 @@ mod bitstream;
 mod png;
 mod images;
 mod egagraph;
+mod export;
+mod carmackization;
+mod rlew;
 
 fn main() -> Result<()>{
     let args: Vec<String> = std::env::args().collect();

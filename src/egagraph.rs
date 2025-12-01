@@ -32,10 +32,6 @@ impl<'a> ChunkIterator<'a> {
         huffman::decompress(compressed, &self.dict, len)
     }
 
-    pub fn is_at_end(&self) -> bool {
-        self.index >= self.chunk_offsets.len()
-    }
-
     // This decompresses chunks that have no length header, using all data up until the next chunk.
     // Since this doesn't know when to stop decoding, it'll maybe have extra byte(s) at the end from huffman decoding excess bits.
     pub fn next_with_auto_length(&mut self) -> Vec<u8> {
@@ -55,13 +51,9 @@ impl<'a> ChunkIterator<'a> {
         huffman::decompress(chunk, &self.dict, 999999)
     }
 
-    // This decompresses tiles, whose chunks have hardcoded lengthsd and no length header.
-    pub fn next_with_length(&mut self, desired_length: usize) -> Vec<u8> {
-        let offset = self.chunk_offsets[self.index];
-        self.index += 1;
-        if offset == 0xffffff { return vec![] }
-        let chunk = &self.data[offset..];
-        huffman::decompress(chunk, &self.dict, desired_length)
+    // Rewind one chunk so it can be read again.
+    pub fn rewind_once(&mut self) {
+        self.index -= 1;
     }
 }
 

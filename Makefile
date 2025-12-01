@@ -11,7 +11,7 @@ help:
 	RUST_BACKTRACE=1 cargo run data/keen6/keen6.exe data/keen6/egagraph.ck6 data/keen6/gamemaps.ck5
 
 clean:
-	rm Output*
+	rm -f Output*
 
 c4: clean 4
 
