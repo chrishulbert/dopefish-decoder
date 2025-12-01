@@ -25,7 +25,7 @@ pub fn expand(compressed: &[u8], flag: u16) -> Result<Vec<u8>> {
             let Some(value_le) = bytes.next() else { bail!("Value le byte missing after RLEW flag!") };
             let Some(value_be) = bytes.next() else { bail!("Value be byte missing after RLEW flag!") };
             let count = (*count_le as u16) + ((*count_be as u16) << 8);
-            for i in 0..count {
+            for _ in 0..count {
                 out.push(*value_le);
                 out.push(*value_be);
             }

@@ -18,3 +18,6 @@ c4: clean 4
 c5: clean 5
 
 c6: clean 6
+
+test:
+	cargo test
