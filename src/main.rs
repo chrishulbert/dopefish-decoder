@@ -22,7 +22,7 @@ fn main() -> Result<()>{
         println!("Usage:");
         println!("dopefish-decoder /Path/To/Keen456.exe /Foo/EGAGRAPH.CK456 GAMEMAPS.CK456");
     } else {
-        read::read(&args[1], &args[2], &args[2])?;
+        read::read(&args[1], &args[2], &args[3])?;
     }
     Ok(())
 }
