@@ -6,6 +6,8 @@ This decodes/reads the graphics (and levels, eventually) for Commander Keen 4-5-
 
 To run, clone this repo, install Rust, and run: `make 4`. It should generate a bunch of png files in the current folder.
 
+It doesn't compress the PNGs, to do so, install `pngquant` then run `make shrink` to make them all a reasonable size.
+
 ## Keen 5 and 6
 
 ![Robo Red](https://github.com/chrishulbert/dopefish-decoder/blob/main/RoboRed.png?raw=true)

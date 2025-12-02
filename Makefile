@@ -8,7 +8,7 @@ help:
 	RUST_BACKTRACE=1 cargo run data/keen5/keen5.exe data/keen5/egagraph.ck5 data/keen5/gamemaps.ck5
 
 6:
-	RUST_BACKTRACE=1 cargo run data/keen6/keen6.exe data/keen6/egagraph.ck6 data/keen6/gamemaps.ck5
+	RUST_BACKTRACE=1 cargo run data/keen6/keen6.exe data/keen6/egagraph.ck6 data/keen6/gamemaps.ck6
 
 clean:
 	rm -f Output*
@@ -21,3 +21,6 @@ c6: clean 6
 
 test:
 	cargo test
+
+shrink: # Error 98 means file(s) was/were already shrunk.
+	-pngquant --force --skip-if-larger --ext .png Output*.png
