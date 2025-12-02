@@ -1,18 +1,20 @@
 use anyhow::Result;
 
-mod read;
-mod parse;
-mod parse_graphics;
-mod versions;
-mod palette;
-mod huffman;
 mod bitstream;
-mod png;
-mod images;
+mod carmackization;
 mod egagraph;
 mod export;
-mod carmackization;
+mod huffman;
+mod images;
+mod map_renderer;
+mod palette;
+mod parse_graphics;
+mod parse_maps;
+mod parse;
+mod png;
+mod read;
 mod rlew;
+mod versions;
 
 fn main() -> Result<()>{
     let args: Vec<String> = std::env::args().collect();

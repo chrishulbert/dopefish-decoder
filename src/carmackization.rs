@@ -1,11 +1,18 @@
 // This is responsible for expanding carmackized data.
 // https://moddingwiki.shikadi.net/wiki/Carmack_compression
 // https://github.com/camoto-project/gamecompjs/blob/master/formats/cmp-carmackize.js
-// https://github.com/gerstrong/Commander-Genius/blob/master/src/fileio/compression/CCarmack.cpp
+// https://github.com/camoto-project/gamearchivejs/blob/master/formats/arc-gamemaps-id-carmack.js
 
 use anyhow::{Result, bail};
 
-pub fn expand(compressed: &[u8]) -> Result<Vec<u8>> {
+pub fn expand_with_length_header(compressed: &[u8]) -> Result<Vec<u8>> {
+    let length = (compressed[0] as usize) + ((compressed[1] as usize) << 8);
+    let expanded = expand(&compressed[2..])?;
+    if expanded.len() != length { bail!("De-carmackization resulted in an unexpected length!") }
+    Ok(expanded)
+}
+
+fn expand(compressed: &[u8]) -> Result<Vec<u8>> {
     let mut out: Vec<u8> = Vec::new();
     let mut bytes = compressed.iter();
     loop {
@@ -16,7 +23,7 @@ pub fn expand(compressed: &[u8]) -> Result<Vec<u8>> {
         let Some(tag) = bytes.next() else {
             out.push(*count); // Reached EOF with an odd number of bytes.
             break
-        }; 
+        };
         // Is it a pointer or literal?
         if *tag == 0xA7 { // Near pointer.
             let Some(distance) = bytes.next() else { bail!("Distance byte missing after near pointer!") };

@@ -5,7 +5,14 @@
 
 use anyhow::{Result, bail};
 
-pub fn expand(compressed: &[u8], key: u16) -> Result<Vec<u8>> {
+pub fn expand_with_length_header(compressed: &[u8], key: u16) -> Result<Vec<u8>> {
+    let length = (compressed[0] as usize) + ((compressed[1] as usize) << 8);
+    let expanded = expand(&compressed[2..], key)?;
+    if expanded.len() != length { bail!("RLEW expansion resulted in an unexpected length!") }
+    Ok(expanded)
+}
+
+fn expand(compressed: &[u8], key: u16) -> Result<Vec<u8>> {
     let mut out: Vec<u8> = Vec::new();
     let mut bytes = compressed.iter();
     loop {

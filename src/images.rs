@@ -1,12 +1,12 @@
-// This is responsible for converting planar EGA images into RGBA images.
+// This is responsible for converting planar EGA images into RGBA images, and the image type.
 
 use crate::palette;
 use crate::png;
 
 pub struct Image {
-    data: Vec<u32>, // 0xrrggbbaa
-    width: usize,
-    height: usize,
+    pub data: Vec<u32>, // 0xrrggbbaa
+    pub width: usize,
+    pub height: usize,
 }
 
 // Convert 4-planes ega data.
@@ -57,5 +57,14 @@ fn combine_planes(data: &[u8], width_div_8: usize, height: usize, planes: usize)
 impl Image {
     pub fn png(&self) -> Vec<u8> {
         png::encode(self.width as u32, self.height as u32, &self.data)
+    }
+
+    // Makes a new empty image.
+    pub fn empty(width: usize, height: usize) -> Self {
+        Image {
+            data: vec![0; width*height],
+            width,
+            height,
+        }
     }
 }

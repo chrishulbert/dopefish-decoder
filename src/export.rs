@@ -1,10 +1,11 @@
 // This is responsible for exporting the assets to eg pngs.
 
 use crate::parse_graphics;
+use crate::parse_maps;
 use crate::images;
 use anyhow::Result;
 
-pub fn export(graphics: &parse_graphics::Graphics) -> Result<()> {
+pub fn export(graphics: &parse_graphics::Graphics, maps: &[parse_maps::Map]) -> Result<()> {
     println!("Exporting assets...");
 
     export_optionals(&graphics.pictures_unmasked, "OutputPictureUnmasked")?;
@@ -14,7 +15,14 @@ pub fn export(graphics: &parse_graphics::Graphics) -> Result<()> {
     export_images(&graphics.tiles_8_masked, "OutputTile8Masked")?;
     export_optionals(&graphics.tiles_16_unmasked, "OutputTile16Unmasked")?;
     export_optionals(&graphics.tiles_16_masked, "OutputTile16Masked")?;
-    
+
+    for (index, map) in maps.iter().enumerate() {
+        let image = crate::map_renderer::render(&map, &graphics);
+        let png = image.png();
+        let path = format!("OutputMap{} - {}.png", index, map.name);
+        std::fs::write(path, &png)?;
+    }
+
     Ok(())
 }
 
