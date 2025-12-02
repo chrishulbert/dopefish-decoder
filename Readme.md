@@ -31,12 +31,12 @@ It doesn't compress the PNGs, to do so, install `pngquant` then run `make shrink
 
 ![Council Member](https://github.com/chrishulbert/dopefish-decoder/blob/main/Council.png?raw=true)
 
-https://moddingwiki.shikadi.net/wiki/Commander_Keen_4-6
-https://moddingwiki.shikadi.net/wiki/EGAGraph_Format
-https://moddingwiki.shikadi.net/wiki/Carmack_compression
-https://github.com/camoto-project/gamecompjs/blob/master/formats/cmp-carmackize.js
-https://github.com/camoto-project/gamearchivejs/blob/master/formats/arc-gamemaps-id-carmack.js
-https://github.com/gerstrong/Commander-Genius/blob/master/src/fileio/compression/CRLE.cpp
+* https://moddingwiki.shikadi.net/wiki/Commander_Keen_4-6
+* https://moddingwiki.shikadi.net/wiki/EGAGraph_Format
+* https://moddingwiki.shikadi.net/wiki/Carmack_compression
+* https://github.com/camoto-project/gamecompjs/blob/master/formats/cmp-carmackize.js
+* https://github.com/camoto-project/gamearchivejs/blob/master/formats/arc-gamemaps-id-carmack.js
+* https://github.com/gerstrong/Commander-Genius/blob/master/src/fileio/compression/CRLE.cpp
 
 ![Shadowlands](https://github.com/chrishulbert/dopefish-decoder/blob/main/Shadowlands.png?raw=true)
 ![Ion Vent](https://github.com/chrishulbert/dopefish-decoder/blob/main/IonVent.png?raw=true)
