@@ -90,14 +90,14 @@ pub struct Map {
 pub struct MapTile {
     pub background: u16,
     pub foreground: Option<u16>,
-    pub sprite: Option<u16>,
+    pub _sprite: Option<u16>,
 }
 impl Map {
     fn parse(gamemaps: &[u8], header: Header, rlew_key: u16) -> Self {
         let plane_0= parse_plane(&gamemaps, &header, 0, rlew_key).unwrap();
         let plane_1= parse_plane(&gamemaps, &header, 1, rlew_key).unwrap();
         let plane_2= parse_plane(&gamemaps, &header, 2, rlew_key).unwrap();
-        let tiles = tiles_from_planes(&plane_0, &plane_1, &plane_2, header.width_tiles, header.height_tiles);
+        let tiles = tiles_from_planes(&plane_0, &plane_1, &plane_2, header.width_tiles);
         Map {
             name: header.name,
             width: header.width_tiles,
@@ -134,7 +134,7 @@ fn parse_plane(gamemaps: &[u8], header: &Header, plane: u8, key: u16) -> Result<
 }
 
 // Converts expanded plane data into a neat vec of map rows.
-fn tiles_from_planes(plane_0: &[u16], plane_1: &[u16], plane_2: &[u16], width: usize, height: usize) -> Vec<Vec<MapTile>> {
+fn tiles_from_planes(plane_0: &[u16], plane_1: &[u16], plane_2: &[u16], width: usize) -> Vec<Vec<MapTile>> {
     // Combine the planes.
     let zipped: Vec<(u16, u16, u16)> = plane_0.iter().zip(plane_1).zip(plane_2).map(|z| {
         (*z.0.0, *z.0.1, *z.1)
@@ -145,7 +145,7 @@ fn tiles_from_planes(plane_0: &[u16], plane_1: &[u16], plane_2: &[u16], width: u
         row.iter().map(|tile| {
             let sprite: Option<u16> = if tile.2 == 0 { None } else { Some(tile.2 - 1) };
             let foreground: Option<u16> = if tile.1 == 0 { None } else { Some(tile.1 - 1) };
-            MapTile { background: tile.0, foreground, sprite }
+            MapTile { background: tile.0, foreground, _sprite: sprite }
         }).collect()
     }).collect()
 }

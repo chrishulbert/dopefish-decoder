@@ -1,6 +1,6 @@
 // This file's responsible for parsing the raw file data into types:
 
-use anyhow::{Result, bail};
+use anyhow::Result;
 use crate::versions;
 use crate::parse_graphics;
 use crate::parse_maps;

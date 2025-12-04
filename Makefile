@@ -22,5 +22,9 @@ c6: clean 6
 test:
 	cargo test
 
-shrink: # Error 98 means file(s) was/were already shrunk.
+shrink: # Ignore error 98 means file(s) was/were already shrunk.
 	-pngquant --force --skip-if-larger --ext .png Output*.png
+
+bench:
+	caffeinate /usr/bin/time bash bench.sh
+
