@@ -27,6 +27,12 @@ This generates big uncompressed PNGs. To compress them, install `pngquant` then 
 * Put it in the same folder as keen4-6.exe
 * In DOSBox, run: UNLZEXE KEEN?.EXE
 
+## See also
+
+![Digging](https://github.com/chrishulbert/digger-decoder/raw/main/readme/digging.png?raw=true)
+
+If you love Lemmings, please check out my [Digger decoder](https://github.com/chrishulbert/digger-decoder) too :)
+
 ## References
 
 ![Council Member](https://github.com/chrishulbert/dopefish-decoder/blob/main/Council.png?raw=true)
